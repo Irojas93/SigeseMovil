@@ -10,7 +10,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-
 import com.pacinetes.sigesemovil.Dominio.Logueo;
 import com.pacinetes.sigesemovil.Dominio.LogueoAction;
 import com.pacinetes.sigesemovil.R;
@@ -19,7 +18,7 @@ public class SettingsActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_configuracion);
+        setContentView(R.layout.activity_settings);
 
         final EditText editTextUrl = (EditText)findViewById(R.id.editText_settings_url);
         Button buttonSave = (Button)findViewById(R.id.button_guardar);

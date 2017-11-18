@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 if (config.getUrlRestful().isEmpty()){
-                    mostrarMensaje("No ha configurado una URL. Hágalo desde el menu \"Settings\"");
+                    mostrarMensaje("No ha configurado una URL. Hágalo desde el menu \"configuración\"");
                     return;
                 }
 
@@ -178,7 +178,7 @@ public class MainActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
-    //onOptionsItemSelected
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
