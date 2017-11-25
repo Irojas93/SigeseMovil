@@ -183,6 +183,4 @@
         android:textColor="@color/TextoUsuario"
         android:layout_alignBottom="@+id/textView_poliza_dias_restantes_label" />
 
-
-
 </RelativeLayout>

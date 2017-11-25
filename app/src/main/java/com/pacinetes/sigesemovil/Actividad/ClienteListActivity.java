@@ -16,8 +16,9 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 import com.fasterxml.jackson.databind.DeserializationFeature;
+
 import com.pacinetes.sigesemovil.R;
-import com.pacinetes.sigesemovil.Servicio.Polizas;
+import com.pacinetes.sigesemovil.Servicio.Clientes;
 import com.pacinetes.sigesemovil.Servicio.RestLink;
 import org.springframework.http.HttpAuthentication;
 import org.springframework.http.HttpBasicAuthentication;
@@ -40,60 +41,60 @@ import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 /**
- * Created by nacho on 22/11/2017.
+ * Created by nacho on 25/11/2017.
  */
 
-public class PolizaListActivity extends Activity {
+public class ClienteListActivity extends Activity {
 
     String url;
     String user;
     String pass;
-    String polizaNumero;
-    Polizas polizas;
+    String clienteNombre;
+    Clientes clientes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_poliza_list);
+        setContentView(R.layout.activity_clientes_list);
 
-        final Button button_buscar = (Button)findViewById(R.id.button_poliza_Buscar);
+        final Button button_buscar = (Button)findViewById(R.id.button_cliente_Buscar);
         button_buscar.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
-                ListView listview = (ListView) findViewById(R.id.listView_Poliza_list);
+                ListView listview = (ListView) findViewById(R.id.listView_Cliente_list);
                 Intent intent = getIntent();
-                url = intent.getStringExtra("url") + "services/PolizaMenu/actions/buscarpolizaNumero/invoke";
+                url = intent.getStringExtra("url") + "services/ClienteMenu/actions/buscarPorNombre/invoke";
                 user = intent.getStringExtra("user");
                 pass = intent.getStringExtra("pass");
-                final EditText editTextPolizaNumero=(EditText) findViewById(R.id.editText_polizaNumero);
+                final EditText editTextClienteNombre=(EditText) findViewById(R.id.editText_cliente_nombre);
 
-                polizaNumero =  '"'+String.valueOf(editTextPolizaNumero.getText().toString())+'"';
+                clienteNombre =  '"'+editTextClienteNombre.getText().toString().toLowerCase()+'"';
 
                 try {
-                    polizas = new FillListOfPolizasThread().execute().get();
+                    clientes = new ClienteListActivity.FillListOfClientesThread().execute().get();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 } catch (ExecutionException e) {
                     e.printStackTrace();
                 }
 
-                List<RestLink> LinksPolizasList = null;
-                final List<String> listPoliza = new ArrayList<String>();
-                if( (polizas != null)&& (polizas.getResult().getValue().size()!=0)) {
-                    LinksPolizasList = polizas.getResult().getValue();
+                List<RestLink> LinksClientesList = null;
+                final List<String> listClientes = new ArrayList<String>();
+                if( (clientes != null)&& (clientes.getResult().getValue().size()!=0)) {
+                    LinksClientesList = clientes.getResult().getValue();
 
                     //tomar nombres de los alumnos
 
-                    for (RestLink polizaList : LinksPolizasList) {
-                        listPoliza.add(polizaList.getTitle());
+                    for (RestLink polizaList : LinksClientesList) {
+                        listClientes.add(polizaList.getTitle());
                     }
-                }else mostrarMensaje("No existen Polizas cargadas ");
+                }else mostrarMensaje("No existen clientes cargadas ");
 
 
                 //llenar la lista
-                final StableArrayAdapter adapter = new StableArrayAdapter(getBaseContext(),
-                        android.R.layout.simple_list_item_1, listPoliza);
+                final ClienteListActivity.StableArrayAdapter adapter = new ClienteListActivity.StableArrayAdapter(getBaseContext(),
+                        android.R.layout.simple_list_item_1, listClientes);
                 listview.setAdapter(adapter);
 
                 listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -104,15 +105,15 @@ public class PolizaListActivity extends Activity {
                                             int position, final long id) {
                         final String item = (String) parent.getItemAtPosition(position);
 
-                        Log.v("numero", polizas.getResult().getValue().get(position).getTitle());
-                        Log.v("link", polizas.getResult().getValue().get(position).getHref());
+                        Log.v("numero", clientes.getResult().getValue().get(position).getTitle());
+                        Log.v("link", clientes.getResult().getValue().get(position).getHref());
 
-                        String urlPolizas = polizas.getResult().getValue().get(position).getHref();
+                        String urlClientes = clientes.getResult().getValue().get(position).getHref();
 
-                        Intent newIntent = new Intent("android.intent.action.Poliza_Detalle");
+                        Intent newIntent = new Intent("android.intent.action.Cliente_Detalle");
                         newIntent.putExtra("user",user);
                         newIntent.putExtra("pass",pass);
-                        newIntent.putExtra("url",urlPolizas);
+                        newIntent.putExtra("url",urlClientes);
 
                         startActivity(newIntent);
 
@@ -147,9 +148,9 @@ public class PolizaListActivity extends Activity {
 
 
 
-    private class FillListOfPolizasThread extends AsyncTask<Void, Void, Polizas> {
+    private class FillListOfClientesThread extends AsyncTask<Void, Void, Clientes> {
         @Override
-        protected Polizas doInBackground(Void...  params) {
+        protected Clientes doInBackground(Void...  params) {
             try {
 
 
@@ -174,21 +175,21 @@ public class PolizaListActivity extends Activity {
                 headers.set("Accept", MediaType.APPLICATION_JSON_VALUE);
 
                 UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(url)
-                        .queryParam("numero", polizaNumero);
+                        .queryParam("nombre", clienteNombre);
                 HttpEntity<?> entity = new HttpEntity<>(headers);
 
-                ResponseEntity<Polizas> response = restTemplate.exchange(builder.build().encode().toUri(), HttpMethod.GET, requestEntity, Polizas.class);
+                ResponseEntity<Clientes> response = restTemplate.exchange(builder.build().encode().toUri(), HttpMethod.GET, requestEntity, Clientes.class);
 
-                Polizas polizas = response.getBody();
+                Clientes clientes = response.getBody();
 
-                Log.v("listado Polizas", polizas.getResult().getValue().size() +"");
-                int arraySize = polizas.getResult().getValue().size();
+                Log.v("listado clientes", clientes.getResult().getValue().size() +"");
+                int arraySize = clientes.getResult().getValue().size();
                 RestLink[] polizasArray = new RestLink[arraySize];
                 for (int i=0; i< arraySize;i++){
-                    polizasArray[i] = polizas.getResult().getValue().get(i);
-                    Log.v("polizas encontrada", polizasArray[i].getTitle());
+                    polizasArray[i] = clientes.getResult().getValue().get(i);
+                    Log.v("cliente encontrado", polizasArray[i].getTitle());
                 }
-                return polizas;
+                return clientes;
 
             } catch (Exception e) {
                 Log.e("main_activity", e.getMessage(), e);
@@ -254,5 +255,4 @@ public class PolizaListActivity extends Activity {
         }
 
     }
-
 }

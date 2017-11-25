@@ -11,8 +11,6 @@
     android:background="@color/Fondo">
 
 
-
-
     <Button
         android:layout_width="220dp"
         android:layout_height="wrap_content"
@@ -24,10 +22,5 @@
         android:enabled="true"
         android:textColor="@color/TextoBoton"
         android:onClick="onClickButton_Poliz" />
-
-
-
-
-
 
 </RelativeLayout>

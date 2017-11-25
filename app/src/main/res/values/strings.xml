@@ -1,14 +1,12 @@
 <resources>
-    <string name="app_name">SiGeSe Movil</string>
+    <string name="app_name">SiGeSe Móvil</string>
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Configuración</string>
     <string name="List_Polizas">Pólizas</string>
-    <string name="List_Equipos">EQUIPOS</string>
-    <string name="List_Tecnicos">TECNICOS</string>
-    <string name="List_OrdenServicios">O.S.</string>
+    <string name="List_Clientes">Clientes</string>
+    <string name="List_Equipos">prueba</string>
     <string name="title_activity_equipo_list">EquipoListActivity</string>
-
 
     <string name="id_label">The ID is</string>
     <string name="id_value">[id]</string>
@@ -22,14 +20,14 @@
     <string name="equipo_modelo_label">Modelo:</string>
     <string name="equipo_imei_label">IMEI:</string>
 
-    <string name="button_alumno_ir_alcurso">MARCA</string>
-    <string name="alumno_ver_direccion">MODELO</string>
     <string name="cliente_apellido_label">Apellido:</string>
     <string name="cliente_nombre_label">Nombre:</string>
     <string name="cliente_dni_label">DNI:</string>
+    <string name="cliente_tipo_dni_label">Tipo DNI:</string>
     <string name="cliente_direccion_label">Dirección:</string>
-    <string name="cliente_telefono_label">Telefono:</string>
-    <string name="cliente_email_label">Email:</string>
+    <string name="cliente_telefono_label">Teléfono:</string>
+    <string name="cliente_fecha_nacimeiento_label">Fecha nacimiento:</string>
+    <string name="cliente_localidad_label">Localidad:</string>
 
     <string name="poliza_numero_label">Póliza número:</string>
     <string name="poliza_importe_total_label">Póliza importe total:</string>

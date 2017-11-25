@@ -5,6 +5,13 @@
     android:background="@color/Fondo"
     >
 
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onClickButton_Clientes"
+        android:text="Buscar cliente por nombre" />
+
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
@@ -19,6 +26,6 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:onClick="onClickButton_Polizas"
-            android:text="Listar Polizas" />
+            android:text="Buscar pólizas" />
     </LinearLayout>
 </LinearLayout>

@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="com.pacinetes.sigesemovil.Actividad.ClienteDetalleActivity"
+    android:background="@color/Fondo">
+
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/cliente_apellido_label"
+        android:id="@+id/textView_cliente_apellido_label"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:textColor="@color/Etiquetas" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:id="@+id/textView_cliente_apellido"
+
+        android:layout_above="@+id/textView_cliente_nombre_label"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:textColor="@color/TextoUsuario" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/cliente_nombre_label"
+        android:id="@+id/textView_cliente_nombre_label"
+        android:layout_below="@+id/textView_cliente_apellido_label"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="20dp"
+        android:textColor="@color/Etiquetas" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:id="@+id/textView_cliente_nombre"
+
+        android:textColor="@color/TextoUsuario"
+        android:layout_alignBaseline="@+id/textView_cliente_nombre_label"
+        android:layout_alignBottom="@+id/textView_cliente_nombre_label"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/cliente_tipo_dni_label"
+        android:id="@+id/textView_cliente_tipo_dni_label"
+        android:layout_marginTop="11dp"
+        android:textColor="@color/Etiquetas"
+        android:layout_below="@+id/textView_cliente_dni_label"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:id="@+id/textView_cliente_tipo_dni"
+        android:layout_alignBottom="@+id/textView_cliente_tipo_dni_label"
+        android:layout_alignRight="@+id/textView_cliente_nombre"
+        android:layout_alignEnd="@+id/textView_cliente_nombre"
+        android:textColor="@color/TextoUsuario" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/cliente_dni_label"
+        android:id="@+id/textView_cliente_dni_label"
+        android:layout_marginTop="20dp"
+        android:textColor="@color/Etiquetas"
+        android:layout_below="@+id/textView_cliente_nombre_label"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:id="@+id/textView_cliente_dni"
+        android:layout_alignBottom="@+id/textView_cliente_dni_label"
+        android:layout_alignRight="@+id/textView_cliente_nombre"
+        android:layout_alignEnd="@+id/textView_cliente_nombre"
+        android:textColor="@color/TextoUsuario" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/cliente_direccion_label"
+        android:id="@+id/textView_cliente_direccion_label"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/Etiquetas"
+        android:layout_below="@+id/textView_cliente_tipo_dni_label" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:id="@+id/textView_cliente_direccion"
+        android:layout_alignBottom="@+id/textView_cliente_direccion_label"
+        android:layout_alignRight="@+id/textView_cliente_dni"
+        android:layout_alignEnd="@+id/textView_cliente_dni"
+        android:textColor="@color/TextoUsuario" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/cliente_telefono_label"
+        android:id="@+id/textView_cliente_telefono_label"
+        android:textColor="@color/Etiquetas"
+        android:layout_marginTop="13dp"
+        android:layout_below="@+id/textView_cliente_direccion_label"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:id="@+id/textView_cliente_telefono"
+        android:layout_alignBottom="@+id/textView_cliente_telefono_label"
+        android:layout_alignRight="@+id/textView_cliente_direccion"
+        android:layout_alignEnd="@+id/textView_cliente_direccion"
+        android:textColor="@color/TextoUsuario" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/cliente_fecha_nacimeiento_label"
+        android:id="@+id/textView_cliente_fecha_nacimeiento_label"
+        android:textColor="@color/Etiquetas"
+        android:layout_marginTop="14dp"
+        android:layout_below="@+id/textView_cliente_telefono_label"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:id="@+id/textView_cliente_fecha_nacimeiento"
+        android:layout_alignBottom="@+id/textView_cliente_fecha_nacimeiento_label"
+        android:layout_alignRight="@+id/textView_cliente_direccion"
+        android:layout_alignEnd="@+id/textView_cliente_direccion"
+        android:textColor="@color/TextoUsuario" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/cliente_localidad_label"
+        android:id="@+id/textView_cliente_localidad_label"
+        android:textColor="@color/Etiquetas"
+        android:layout_below="@+id/textView_cliente_fecha_nacimeiento_label" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:id="@+id/textView_cliente_localidad"
+        android:layout_alignBottom="@+id/textView_cliente_localidad_label"
+        android:layout_alignRight="@+id/textView_cliente_direccion"
+        android:layout_alignEnd="@+id/textView_cliente_direccion"
+        android:textColor="@color/TextoUsuario" />
+
+</RelativeLayout>
