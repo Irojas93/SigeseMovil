@@ -13,48 +13,12 @@
         android:layout_weight="1">
 
 
-
         <Button
-            android:layout_width="0dp"
-            android:layout_height="fill_parent"
-            android:id="@+id/imageButton2"
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:onClick="onClickButton_EquipoReparado"
-            android:adjustViewBounds="false"
-            android:src=""
-            android:text="Listar pólizas"
-            android:clickable="false"
-            android:scaleType="fitCenter"
-            android:tintMode="src_in"
-            android:padding="@dimen/abc_action_bar_default_padding_end_material" />
-
-        <Button
-            android:layout_width="0dp"
-            android:layout_height="fill_parent"
-            android:id="@+id/imageButton3"
-            android:layout_weight="1"
-            android:onClick="onClickButton_EquipoReparado"
-            android:adjustViewBounds="false"
-            android:src=""
-            android:text="Listar clientes"
-            android:clickable="false"
-            android:scaleType="fitCenter"
-            android:tintMode="src_in"
-            android:padding="@dimen/abc_action_bar_default_padding_end_material" />
-
-        <!--<ImageButton-->
-        <!--android:layout_width="0dp"-->
-        <!--android:layout_height="fill_parent"-->
-        <!--android:id="@+id/imageButton7"-->
-        <!--android:layout_weight="1"-->
-        <!--android:scaleType="fitCenter"-->
-        <!--android:src="@mipmap/ic_sinarreglo"-->
-        <!--android:onClick="onClickButton_EquipoSinArreglo"-->
-        <!--android:padding="@dimen/abc_action_bar_default_padding_start_material" />-->
-
+            android:onClick="onClickButton_Polizas"
+            android:text="Listar Polizas" />
     </LinearLayout>
-
-
-
-
 </LinearLayout>

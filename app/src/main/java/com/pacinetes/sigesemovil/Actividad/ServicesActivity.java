@@ -38,7 +38,6 @@ public class ServicesActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_services);
-
         //ListView listview = (ListView) findViewById(R.id.listView_service);
 
         Intent intent = getIntent();
@@ -51,37 +50,12 @@ public class ServicesActivity extends Activity {
         title.setText( title.getText() + ": " + user);
 */
         //Captura del evento Click del boton
-        Button button_Equipment = (Button) findViewById(R.id.button_Equipment);
+        Button button_Poliz = (Button) findViewById(R.id.button_Poliz);
     }
 
+    public void onClickButton_Polizas(View view) {
 
-
-    public void onClickButton_Equipment(View view) {
-
-        Intent intent = new Intent("android.intent.action.EQUIPO_LIST");
-
-        intent.putExtra("url", url);
-        intent.putExtra("user", user);
-        intent.putExtra("pass", pass);
-
-        startActivity(intent);
-    }
-
-    public void onClickButton_ListCustomers(View  view) {
-
-        Intent intent = new Intent("android.intent.action.CLIENTE_LIST");
-
-        intent.putExtra("url", url);
-        intent.putExtra("user", user);
-        intent.putExtra("pass", pass);
-
-        startActivity(intent);
-    }
-
-
-    public void onClickButton_prueba(View  view) {
-
-        Intent intent = new Intent("android.intent.action.EQUIPOS2");
+        Intent intent = new Intent("android.intent.action.Polizas_List");
 
         intent.putExtra("url", url);
         intent.putExtra("user", user);
@@ -142,9 +116,6 @@ public class ServicesActivity extends Activity {
                         }
 
                     }
-
-
-
                 }
 
                 return services;

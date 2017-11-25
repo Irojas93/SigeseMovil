@@ -3,7 +3,6 @@ package com.pacinetes.sigesemovil.Actividad;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -15,26 +14,20 @@ import android.content.Context;
 import android.content.Intent;
 import android.widget.Toast;
 import android.util.Log;
-
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.pacinetes.sigesemovil.Dominio.Logueo;
 import com.pacinetes.sigesemovil.Dominio.LogueoAction;
 import com.pacinetes.sigesemovil.R;
 import com.pacinetes.sigesemovil.Servicio.Marcas;
 import com.pacinetes.sigesemovil.Servicio.RestLink;
-
-
 import org.springframework.http.HttpAuthentication;
 import org.springframework.http.HttpBasicAuthentication;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
-import org.springframework.web.util.UriComponentsBuilder;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
@@ -99,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
                 intent.putExtra("user", et_user.getText().toString());
                 intent.putExtra("pass", et_pass.getText().toString());
 
-                url =  intent.getStringExtra("url")+ "services/MarcaMenu/actions/listar/invoke";
+                url =  intent.getStringExtra("url")+"services/MarcaMenu/actions/listar/invoke";
                 user =  intent.getStringExtra("user");
                 pass =  intent.getStringExtra("pass");
 
@@ -115,11 +108,11 @@ public class MainActivity extends AppCompatActivity {
 
                 List<RestLink> LinksMarcasList = null;
                 final List<String> listNombres = new ArrayList<String>();
-                if ((marcas != null) && (marcas.getResult().getValue().size()!=0)){
-                   mostrarMensaje("Todo K");
-                    // startActivity(intent);
+                if ((marcas != null) && (marcas.getResult().getValue().size()>=0)){
+                    //mostrarMensaje("a verGa briel");
+                    startActivity(intent);
                 }else
-                    mostrarMensaje("El usario No tiene permiso de Acceso");
+                    mostrarMensaje("El usario No tiene permiso de Acceso ");
 
             }
         });

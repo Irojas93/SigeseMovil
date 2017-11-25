@@ -6,5 +6,7 @@
     <color name="FondoBoton">#ffa2a2a2</color>
     <color name="TextoBoton">#FF000000</color>
     <color name="TextoBotonOscuro">#000033</color>
+    <color name="TextoTituloDetalle">#2aae5d</color>
+    <color name="TextoEstadoDetalle">#ffffff</color>
 
 </resources>
