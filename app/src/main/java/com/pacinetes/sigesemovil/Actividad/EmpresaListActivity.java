@@ -15,11 +15,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
-import com.fasterxml.jackson.databind.DeserializationFeature;
 
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.pacinetes.sigesemovil.R;
 import com.pacinetes.sigesemovil.Servicio.Clientes;
+import com.pacinetes.sigesemovil.Servicio.Empresas;
 import com.pacinetes.sigesemovil.Servicio.RestLink;
+
 import org.springframework.http.HttpAuthentication;
 import org.springframework.http.HttpBasicAuthentication;
 import org.springframework.http.HttpEntity;
@@ -30,6 +32,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
+
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -44,57 +47,57 @@ import java.util.concurrent.ExecutionException;
  * Created by nacho on 25/11/2017.
  */
 
-public class ClienteListActivity extends Activity {
+public class EmpresaListActivity extends Activity {
 
     String url;
     String user;
     String pass;
-    String clienteNombre;
-    Clientes clientes;
+    String razonSocial;
+    Empresas empresas;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_clientes_list);
+        setContentView(R.layout.activity_empresas_list);
 
-        final Button button_buscar = (Button)findViewById(R.id.button_cliente_Buscar);
+        final Button button_buscar = (Button)findViewById(R.id.button_empresa_Buscar);
         button_buscar.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
-                ListView listview = (ListView) findViewById(R.id.listView_Cliente_list);
+                ListView listview = (ListView) findViewById(R.id.listView_Empresa_List);
                 Intent intent = getIntent();
-                url = intent.getStringExtra("url") + "services/ClienteMenu/actions/buscarPorNombre/invoke";
+                url = intent.getStringExtra("url") + "services/EmpresaMenu/actions/buscarPorRazonSocial/invoke";
                 user = intent.getStringExtra("user");
                 pass = intent.getStringExtra("pass");
-                final EditText editTextClienteNombre=(EditText) findViewById(R.id.editText_cliente_nombre);
+                final EditText editTextRazonSocial=(EditText) findViewById(R.id.editText_razon_social);
 
-                clienteNombre =  '"'+editTextClienteNombre.getText().toString().toLowerCase()+'"';
+                razonSocial =  '"'+editTextRazonSocial.getText().toString().toLowerCase()+'"';
 
                 try {
-                    clientes = new ClienteListActivity.FillListOfClientesThread().execute().get();
+                    empresas = new EmpresaListActivity.FillListOfEmpresasThread().execute().get();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 } catch (ExecutionException e) {
                     e.printStackTrace();
                 }
 
-                List<RestLink> LinksClientesList = null;
-                final List<String> listClientes = new ArrayList<String>();
-                if( (clientes != null)&& (clientes.getResult().getValue().size()!=0)) {
-                    LinksClientesList = clientes.getResult().getValue();
+                List<RestLink> LinksEmpresasList = null;
+                final List<String> listEmpresas = new ArrayList<String>();
+                if( (empresas != null)&& (empresas.getResult().getValue().size()!=0)) {
+                    LinksEmpresasList = empresas.getResult().getValue();
 
                     //tomar nombres de los alumnos
 
-                    for (RestLink empresaList : LinksClientesList) {
-                        listClientes.add(empresaList.getTitle());
+                    for (RestLink empresaList : LinksEmpresasList) {
+                        listEmpresas.add(empresaList.getTitle());
                     }
                 }else mostrarMensaje("No existen clientes cargadas ");
 
 
                 //llenar la lista
-                final ClienteListActivity.StableArrayAdapter adapter = new ClienteListActivity.StableArrayAdapter(getBaseContext(),
-                        android.R.layout.simple_list_item_1, listClientes);
+                final EmpresaListActivity.StableArrayAdapter adapter = new EmpresaListActivity.StableArrayAdapter(getBaseContext(),
+                        android.R.layout.simple_list_item_1, listEmpresas);
                 listview.setAdapter(adapter);
 
                 listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -105,15 +108,15 @@ public class ClienteListActivity extends Activity {
                                             int position, final long id) {
                         final String item = (String) parent.getItemAtPosition(position);
 
-                        Log.v("numero", clientes.getResult().getValue().get(position).getTitle());
-                        Log.v("link", clientes.getResult().getValue().get(position).getHref());
+                        Log.v("numero", empresas.getResult().getValue().get(position).getTitle());
+                        Log.v("link", empresas.getResult().getValue().get(position).getHref());
 
-                        String urlClientes = clientes.getResult().getValue().get(position).getHref();
+                        String urlEmpresas = empresas.getResult().getValue().get(position).getHref();
 
-                        Intent newIntent = new Intent("android.intent.action.Cliente_Detalle");
+                        Intent newIntent = new Intent("android.intent.action.Empresa_Detalle");
                         newIntent.putExtra("user",user);
                         newIntent.putExtra("pass",pass);
-                        newIntent.putExtra("url",urlClientes);
+                        newIntent.putExtra("url",urlEmpresas);
 
                         startActivity(newIntent);
 
@@ -148,9 +151,9 @@ public class ClienteListActivity extends Activity {
 
 
 
-    private class FillListOfClientesThread extends AsyncTask<Void, Void, Clientes> {
+    private class FillListOfEmpresasThread extends AsyncTask<Void, Void, Empresas> {
         @Override
-        protected Clientes doInBackground(Void...  params) {
+        protected Empresas doInBackground(Void...  params) {
             try {
 
 
@@ -175,21 +178,21 @@ public class ClienteListActivity extends Activity {
                 headers.set("Accept", MediaType.APPLICATION_JSON_VALUE);
 
                 UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(url)
-                        .queryParam("nombre", clienteNombre);
+                        .queryParam("razonSocial", razonSocial);
                 HttpEntity<?> entity = new HttpEntity<>(headers);
 
-                ResponseEntity<Clientes> response = restTemplate.exchange(builder.build().encode().toUri(), HttpMethod.GET, requestEntity, Clientes.class);
+                ResponseEntity<Empresas> response = restTemplate.exchange(builder.build().encode().toUri(), HttpMethod.GET, requestEntity, Empresas.class);
 
-                Clientes clientes = response.getBody();
+                Empresas empresas = response.getBody();
 
-                Log.v("listado clientes", clientes.getResult().getValue().size() +"");
-                int arraySize = clientes.getResult().getValue().size();
+                Log.v("listado empresas", empresas.getResult().getValue().size() +"");
+                int arraySize = empresas.getResult().getValue().size();
                 RestLink[] polizasArray = new RestLink[arraySize];
                 for (int i=0; i< arraySize;i++){
-                    polizasArray[i] = clientes.getResult().getValue().get(i);
-                    Log.v("cliente encontrado", polizasArray[i].getTitle());
+                    polizasArray[i] = empresas.getResult().getValue().get(i);
+                    Log.v("empresas encontrada", polizasArray[i].getTitle());
                 }
-                return clientes;
+                return empresas;
 
             } catch (Exception e) {
                 Log.e("main_activity", e.getMessage(), e);

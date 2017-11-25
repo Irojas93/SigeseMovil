@@ -5,6 +5,7 @@
     <string name="action_settings">Configuración</string>
     <string name="List_Polizas">Pólizas</string>
     <string name="List_Clientes">Clientes</string>
+    <string name="List_Empresas">Empresas</string>
     <string name="List_Equipos">prueba</string>
     <string name="title_activity_equipo_list">EquipoListActivity</string>
 
@@ -29,6 +30,13 @@
     <string name="cliente_fecha_nacimeiento_label">Fecha nacimiento:</string>
     <string name="cliente_localidad_label">Localidad:</string>
 
+    <string name="empresa_razon_social_label">Razón social:</string>
+    <string name="empresa_cuit_cuil_label">Cuit:</string>
+    <string name="empresa_direccion_label">Dirección:</string>
+    <string name="empresa_localidad_label">Localidad:</string>
+    <string name="empresa_mail_label">Mail:</string>
+    <string name="empresa_telefono_label">Teléfono:</string>
+
     <string name="poliza_numero_label">Póliza número:</string>
     <string name="poliza_importe_total_label">Póliza importe total:</string>
     <string name="poliza_compania_label">Póliza compañía:</string>
@@ -37,5 +45,7 @@
     <string name="poliza_fecha_vigencia_label">Fecha vigencia:</string>
     <string name="poliza_fecha_vencimiento_label">Fecha vencimiento:</string>
     <string name="poliza_dias_restantes_label">Días restantes para vencer:</string>
+
+
 
 </resources>

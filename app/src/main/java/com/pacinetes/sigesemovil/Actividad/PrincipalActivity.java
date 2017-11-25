@@ -76,6 +76,15 @@ public class PrincipalActivity extends Activity{
 
         startActivity(intent);
     }
+    public void onClickButton_Empresas(View view) {
+
+        Intent intent = new Intent("android.intent.action.Empresa_List");
+        intent.putExtra("url", url);
+        intent.putExtra("user", user);
+        intent.putExtra("pass", pass);
+
+        startActivity(intent);
+    }
     private class FillListOfServicesThread extends AsyncTask<Void, Void, Service> {
         @Override
         protected Service doInBackground(Void... params) {

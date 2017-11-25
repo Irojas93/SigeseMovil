@@ -12,6 +12,14 @@
         android:onClick="onClickButton_Clientes"
         android:text="Buscar cliente por nombre" />
 
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Buscar empresa por razón social"
+        android:onClick="onClickButton_Empresas"
+        />
+
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
